@@ -21,3 +21,16 @@ after_success:
   - docker push tordanf/multi-nginx
   - docker push tordanf/multi-server
   - docker push tordanf/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ue-east-2
+  app: multi-docker
+  env: multiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-248183079538
+  bucker_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
